@@ -1,0 +1,11 @@
+extends layouts/login-layout.pug
+
+block content
+    .loginContainer 
+        h1 Login  
+        p.errorMessage #{errorMessage}
+        form(method="post") 
+            input(type="text", name="logUserName", placeholder="Username or Email",value=logUserName, required="")
+            input(type="password", name="logUserPassword", placeholder="Password", required="")
+            input(type="submit", value="Log in")
+            a(href="/register") Need an account? Register here.
