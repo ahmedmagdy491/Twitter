@@ -1,8 +1,4 @@
 const mongoose = require('mongoose');
-const bcrypt = require('bcrypt');
-const saltRounds = 10
-const myPlaintextPassword = 's0/\/\P4$$w0rD';
-const someOtherPlaintextPassword = 'not_bacon';
 
 
 const UserSchema = new mongoose.Schema({
@@ -34,16 +30,10 @@ const UserSchema = new mongoose.Schema({
     },
     profilePic:{
         type:String,
-        default: '/images/profilePic.png'
+        default: '/images/profilePic.jpg'
     }
     
 }, {timestamps: true})
 
-
-/* bcrypt.genSalt(saltRounds, function(err,salt){
-    bcrypt.hash(myPlaintextPassword, saltRounds, function(err,hash){
-
-    })
-}) */
 
 module.exports = mongoose.model('User', UserSchema)

@@ -27,16 +27,24 @@ app.use(express.static(path.join(__dirname, "public")));
 
 // session
 app.use(session({
-	secret: 'this session is mine man!',
-	resave: true,
-	saveUninitialized: false
-}));
+    secret: "this is my session man!",
+    resave: true,
+    saveUninitialized: false
+}))
 
 // Routes
 const loginRoute = require('./routes/loginRoute');
 const registerRoute = require('./routes/registerRoute');
+const logoutRoute = require('./routes/logoutRoute');
+
+// API Routes
+const postsRoute = require('./routes/api/posts');
+
 app.use('/login',loginRoute);
 app.use('/register',registerRoute);
+app.use('/logout',logoutRoute);
+
+app.use('/api/posts', postsRoute);
 
 
 app.get('/', middleware.requireLogin, (req, res, next) => {
@@ -45,5 +53,4 @@ app.get('/', middleware.requireLogin, (req, res, next) => {
 		userLoggedIn: req.session.user,
 	};
 	res.status(200).render('home', payload);
-	next();
 });
